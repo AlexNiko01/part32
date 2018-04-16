@@ -11,9 +11,10 @@ class FileReader
      */
     public function readFile(string $fileName)
     {
-        $filePath = 'txt/'.$fileName;
+        $filePath = 'txt/' . $fileName;
         $fileHandle = fopen($filePath, "r");
         return $fileHandle;
     }
+
 
 }
