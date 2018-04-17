@@ -44,9 +44,10 @@ class JsonParser
 
     protected function dataRefactor($singleLineArr):array
     {
-        $singleLineArr['_source']['_id'] = $singleLineArr['_id'];
+        $id = ['_id' => $singleLineArr['_id']];
         $singleLineArr = $singleLineArr['_source'];
         ksort($singleLineArr);
+        $singleLineArr = $id + $singleLineArr;
         return $singleLineArr;
     }
 }
