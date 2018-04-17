@@ -6,14 +6,27 @@
 class FileReader
 {
     /**
-     * @param string $fileName
-     * @return resource
+     * @var $file
      */
-    public function readFile(string $fileName)
+    protected $file;
+
+    /**
+     * @param $file string
+     */
+    public function __construct($file) {
+        $this->file = $file;
+    }
+    /**
+     * @return Generator
+     */
+    public function readFile(): generator
     {
-        $filePath = 'txt/' . $fileName;
-        $fileHandle = fopen($filePath, "r");
-        return $fileHandle;
+        $fp = fopen($this->file, 'rb');
+
+        while (($line = fgets($fp)) !== false)
+            yield rtrim($line, "\r\n");
+
+        fclose($fp);
     }
 
 
