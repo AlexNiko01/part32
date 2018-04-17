@@ -6,14 +6,18 @@
 class CsvExporter
 {
     /**
-     * @param $productData
+     * @param $productsData array
      */
-    public function saveCsv($productData)
+    public function saveCsv($productsData)
     {
         $file = 'csv/product_distributors.csv';
-        chmod('csv', 0775);
+
         $fp = fopen($file, 'w');
-        fwrite($fp, $productData);
+        $header = array_keys($productsData[0]);
+        fputcsv($fp, $header);
+        foreach ($productsData as $productData) {
+            fputcsv($fp, $productData);
+        }
         fclose($fp);
     }
 }

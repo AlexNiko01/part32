@@ -8,10 +8,7 @@ $fileReader = new FileReader('txt/product_distributors.txt');
 $generator = $fileReader->readFile();
 $jsonParser = new JsonParser($generator);
 
-$productData = $jsonParser->parseJson();
-//var_dump(
-//    $productData
-//);
+$productsData = $jsonParser->parseJson();
 
 $csvExporter = new CsvExporter();
-$csvExporter->saveCsv($productData);
+$csvExporter->saveCsv($productsData);
